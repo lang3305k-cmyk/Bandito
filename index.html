@@ -3,244 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LANGZ EXPLOIT PREMIUM v4.0</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <title>LANGZ VORTEX | PREMIUM EXPLOIT</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
         :root {
-            --neon-red: #ff003c;
-            --dark-bg: #0a0a0c;
-            --glass: rgba(20, 20, 25, 0.85);
+            --danger: #ff0000;
+            --bg-deep: #030303;
+            --glass-red: rgba(255, 0, 0, 0.07);
         }
 
-        body, html {
+        body {
+            background: var(--bg-deep);
+            color: var(--danger);
+            font-family: 'Space Mono', monospace;
             margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--dark-bg);
-            color: white;
-            font-family: 'Orbitron', sans-serif; /* Pake font futuristik */
             overflow: hidden;
-        }
-
-        /* Particles Background */
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .main-container {
-            position: relative;
-            z-index: 2;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
 
-        .premium-card {
-            background: var(--glass);
-            width: 450px;
-            padding: 40px;
-            border-radius: 5px;
-            border: 1px solid rgba(255, 0, 60, 0.3);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 50px rgba(255, 0, 60, 0.1);
+        /* Scanline Overlay */
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.1), rgba(0,0,0,0.1) 1px, transparent 1px, transparent 2px);
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .dashboard {
+            width: 95%;
+            max-width: 600px;
+            background: rgba(10, 0, 0, 0.9);
+            border: 1px solid var(--danger);
+            padding: 20px;
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.15);
+            position: relative;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--danger);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .header-top span { font-size: 10px; letter-spacing: 2px; }
+
+        .title-area h1 {
+            margin: 0;
+            font-size: 20px;
+            text-shadow: 0 0 10px var(--danger);
+            letter-spacing: 5px;
             text-align: center;
         }
 
-        .header-section {
-            margin-bottom: 30px;
+        .stats-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
-        .badge {
-            background: gold;
-            color: black;
+        .stat-card {
+            border: 1px solid #222;
+            padding: 10px;
+            font-size: 9px;
+            text-align: center;
+        }
+
+        .stat-card b { display: block; color: #fff; font-size: 12px; }
+
+        .main-interface {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .input-group label {
+            display: block;
             font-size: 10px;
-            padding: 3px 10px;
-            font-weight: 900;
-            border-radius: 2px;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-
-        .title {
-            font-size: 24px;
-            letter-spacing: 5px;
-            color: var(--neon-red);
-            text-shadow: 0 0 15px var(--neon-red);
-            margin: 10px 0;
-        }
-
-        .author-tag {
-            font-size: 11px;
+            margin-bottom: 5px;
             color: #888;
-            letter-spacing: 2px;
         }
 
-        .input-box {
-            background: rgba(0,0,0,0.5);
-            border: 1px solid #333;
-            padding: 15px;
+        input, select {
             width: 100%;
-            color: var(--neon-red);
-            font-family: 'Courier New', monospace;
-            box-sizing: border-box;
-            margin-top: 10px;
-            outline: none;
-            transition: 0.3s;
-        }
-
-        .input-box:focus {
-            border-color: var(--neon-red);
-            box-shadow: 0 0 10px rgba(255, 0, 60, 0.2);
-        }
-
-        .btn-deploy {
-            background: linear-gradient(45deg, #80001a, var(--neon-red));
-            border: none;
-            color: white;
-            width: 100%;
-            padding: 18px;
-            margin-top: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
-            transition: 0.3s;
-        }
-
-        .btn-deploy:hover {
-            letter-spacing: 3px;
-            box-shadow: 0 0 20px var(--neon-red);
-        }
-
-        #status-terminal {
-            display: none;
-            text-align: left;
-            font-size: 11px;
-            color: #00ff00;
             background: #000;
-            padding: 15px;
-            margin-top: 20px;
-            border-left: 3px solid var(--neon-red);
-            height: 100px;
-            overflow: hidden;
+            border: 1px solid #444;
+            padding: 12px;
+            color: #fff;
+            font-family: 'Space Mono', monospace;
+            outline: none;
+            box-sizing: border-box;
         }
 
-        /* Scaring Layer */
-        #scare-layer {
+        input:focus { border-color: var(--danger); }
+
+        .btn-strike {
+            background: var(--danger);
+            color: #000;
+            padding: 15px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            transition: 0.3s;
+        }
+
+        .btn-strike:hover {
+            background: #fff;
+            box-shadow: 0 0 20px #fff;
+        }
+
+        #terminal-output {
+            display: none;
+            background: #000;
+            border: 1px inset #222;
+            height: 120px;
+            padding: 10px;
+            font-size: 10px;
+            overflow-y: hidden;
+            margin-top: 15px;
+            color: #00ff00; /* Green log for real hack vibe */
+        }
+
+        /* Jumpscare */
+        #kill-screen {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: black;
-            z-index: 99999;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #000; z-index: 999999;
         }
-        #scare-layer img { width: 100%; height: 100%; object-fit: cover; }
+        #kill-screen img { width: 100%; height: 100%; object-fit: cover; }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<div id="particles-js"></div>
+<div class="dashboard">
+    <div class="header-top">
+        <span>ID: LANGZ_VORTEX_PAID</span>
+        <span>STATUS: AUTHORIZED √</span>
+    </div>
 
-<div class="main-container">
-    <div class="premium-card">
-        <div class="header-section">
-            <div class="badge">PREMIUM VERSION</div>
-            <div class="title">LANGZ EXPLOIT</div>
-            <div class="author-tag">DEVELOPED BY LANGZ CYBER LABORATORY</div>
+    <div class="title-area">
+        <h1>LANGZ VORTEX v9.0</h1>
+        <p style="text-align:center; font-size:9px; color:#555; margin-top:5px;">ENTERPRISE GRADE EXPLOIT SYSTEM</p>
+    </div>
+
+    <div class="stats-row">
+        <div class="stat-card">SERVERS<b>128/ONLINE</b></div>
+        <div class="stat-card">LATENCY<b>12ms</b></div>
+        <div class="stat-card">UPTIME<b>99.9%</b></div>
+    </div>
+
+    <div class="main-interface">
+        <div class="input-group">
+            <label>[#] TARGET_IDENTIFICATION</label>
+            <input type="number" id="target" placeholder="+628XXXXXXXXXX">
         </div>
 
-        <div style="text-align: left; font-size: 12px;">
-            <label style="color: #666;">LICENSE_KEY:</label>
-            <div style="color: #00ff00; margin-bottom: 15px;">XXXX-LANGZ-2026-PAID</div>
-
-            <label style="color: #666;">TARGET_UID:</label>
-            <input type="number" id="target" class="input-box" placeholder="+62 8xx xxxx xxxx">
-            
-            <label style="color: #666; margin-top: 15px; display: block;">ATTACK_VECTOR:</label>
-            <select class="input-box">
-                <option>PERMANENT_BAN_METHOD_v4</option>
-                <option>RECURSIVE_CRASH_2026</option>
-                <option>OS_OVERHEAT_EXPLOIT</option>
+        <div class="input-group">
+            <label>[#] PAYLOAD_CONFIGURATION</label>
+            <select id="method">
+                <option>PERMANENT_ACCOUNT_TERMINATION (BAN)</option>
+                <option>RECURSIVE_RAM_OVERFLOW (CRASH)</option>
+                <option>DISTRIBUTED_DENIAL_OF_SERVICE (DDOS)</option>
+                <option>SYSTEM_INTERNAL_EXPLOSION</option>
             </select>
         </div>
 
-        <button class="btn-deploy" onclick="startAttack()">DEPLOY EXPLOIT</button>
-
-        <div id="status-terminal"></div>
+        <button class="btn-strike" onclick="initiate()">Execute Strike</button>
     </div>
+
+    <div id="terminal-output"></div>
 </div>
 
-<div id="scare-layer">
-    <img src="assets/jumpscare.jpg">
+<div id="kill-screen">
+    <img src="jumpscare.jpg">
 </div>
 
-<audio id="scream-audio" loop>
-    <source src="assets/scream.mp3" type="audio/mpeg">
+<audio id="sfx-scare" loop>
+    <source src="scream.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-    // Particles Setting
-    particlesJS("particles-js", {
-        "particles": {
-            "number": { "value": 80 },
-            "color": { "value": "#ff003c" },
-            "shape": { "type": "circle" },
-            "opacity": { "value": 0.5 },
-            "size": { "value": 3 },
-            "line_linked": { "enable": true, "distance": 150, "color": "#ff003c", "opacity": 0.4, "width": 1 }
-        }
-    });
-
     const logs = [
-        "[SYSTEM] Verifying Premium License...",
-        "[OK] License Verified for Langz User.",
-        "[SYSTEM] Contacting WhatsApp Mainframe...",
-        "[OK] API Handshake Success.",
-        "[INFO] Injecting Ban-Code to UID...",
-        "[INFO] Payload: PERM_BAN_0991",
-        "[WARN] System Overload 80%...",
-        "[CRITICAL] SERVER BYPASSED!",
-        "[OK] DISCONNECTING TARGET..."
+        "[INFO] Handshaking with Mainframe...",
+        "[OK] Authorized by Langz-Private-Key.",
+        "[SYSTEM] Syncing with 128 Global Nodes...",
+        "[INFO] Target MSISDN Verified.",
+        "[WARN] Injecting Malicious Memory Blocks...",
+        "[INFO] Method: TERMINATION_v9",
+        "[OK] Payload Injected. Waiting for Trigger...",
+        "[FATAL] EXPLOITING KERNEL...",
+        "[!!!] TARGET SYSTEM COLLAPSED!"
     ];
 
-    function startAttack() {
-        let val = document.getElementById('target').value;
-        if(val.length < 5) return alert("INPUT TARGET!");
+    function initiate() {
+        const target = document.getElementById('target').value;
+        if(target.length < 5) { alert("ERROR: TARGET_NOT_SPECIFIED"); return; }
 
-        document.getElementById('status-terminal').style.display = 'block';
+        document.querySelector('.main-interface').style.opacity = '0.3';
+        document.querySelector('.btn-strike').disabled = true;
+        
+        const term = document.getElementById('terminal-output');
+        term.style.display = 'block';
+
         let i = 0;
-        let t = document.getElementById('status-terminal');
-
         let interval = setInterval(() => {
             if(i < logs.length) {
-                t.innerHTML += logs[i] + "<br>";
-                t.scrollTop = t.scrollHeight;
+                term.innerHTML += "> " + logs[i] + "<br>";
+                term.scrollTop = term.scrollHeight;
                 i++;
             } else {
                 clearInterval(interval);
-                setTimeout(jumpscare, 500);
+                setTimeout(strike, 400);
             }
-        }, 700);
+        }, 500);
     }
 
-    function jumpscare() {
+    function strike() {
         let de = document.documentElement;
         if(de.requestFullscreen) de.requestFullscreen();
-        
-        document.getElementById('scare-layer').style.display = 'block';
-        let snd = document.getElementById('scream-audio');
+        document.getElementById('kill-screen').style.display = 'block';
+        let snd = document.getElementById('sfx-scare');
         snd.volume = 1.0;
         snd.play();
-
-        if(navigator.vibrate) navigator.vibrate([1000, 500, 1000, 500, 2000]);
+        if(navigator.vibrate) navigator.vibrate([1000, 200, 1000, 200, 1000]);
     }
 </script>
 
