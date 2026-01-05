@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LANGZ EXPLOIT PREMIUM v4.0</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        :root {
+            --neon-red: #ff003c;
+            --dark-bg: #0a0a0c;
+            --glass: rgba(20, 20, 25, 0.85);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Orbitron', sans-serif; /* Pake font futuristik */
+            overflow: hidden;
+        }
+
+        /* Particles Background */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .main-container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .premium-card {
+            background: var(--glass);
+            width: 450px;
+            padding: 40px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 0, 60, 0.3);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 50px rgba(255, 0, 60, 0.1);
+            text-align: center;
+        }
+
+        .header-section {
+            margin-bottom: 30px;
+        }
+
+        .badge {
+            background: gold;
+            color: black;
+            font-size: 10px;
+            padding: 3px 10px;
+            font-weight: 900;
+            border-radius: 2px;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .title {
+            font-size: 24px;
+            letter-spacing: 5px;
+            color: var(--neon-red);
+            text-shadow: 0 0 15px var(--neon-red);
+            margin: 10px 0;
+        }
+
+        .author-tag {
+            font-size: 11px;
+            color: #888;
+            letter-spacing: 2px;
+        }
+
+        .input-box {
+            background: rgba(0,0,0,0.5);
+            border: 1px solid #333;
+            padding: 15px;
+            width: 100%;
+            color: var(--neon-red);
+            font-family: 'Courier New', monospace;
+            box-sizing: border-box;
+            margin-top: 10px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-box:focus {
+            border-color: var(--neon-red);
+            box-shadow: 0 0 10px rgba(255, 0, 60, 0.2);
+        }
+
+        .btn-deploy {
+            background: linear-gradient(45deg, #80001a, var(--neon-red));
+            border: none;
+            color: white;
+            width: 100%;
+            padding: 18px;
+            margin-top: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+            transition: 0.3s;
+        }
+
+        .btn-deploy:hover {
+            letter-spacing: 3px;
+            box-shadow: 0 0 20px var(--neon-red);
+        }
+
+        #status-terminal {
+            display: none;
+            text-align: left;
+            font-size: 11px;
+            color: #00ff00;
+            background: #000;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 3px solid var(--neon-red);
+            height: 100px;
+            overflow: hidden;
+        }
+
+        /* Scaring Layer */
+        #scare-layer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: black;
+            z-index: 99999;
+        }
+        #scare-layer img { width: 100%; height: 100%; object-fit: cover; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div id="particles-js"></div>
+
+<div class="main-container">
+    <div class="premium-card">
+        <div class="header-section">
+            <div class="badge">PREMIUM VERSION</div>
+            <div class="title">LANGZ EXPLOIT</div>
+            <div class="author-tag">DEVELOPED BY LANGZ CYBER LABORATORY</div>
+        </div>
+
+        <div style="text-align: left; font-size: 12px;">
+            <label style="color: #666;">LICENSE_KEY:</label>
+            <div style="color: #00ff00; margin-bottom: 15px;">XXXX-LANGZ-2026-PAID</div>
+
+            <label style="color: #666;">TARGET_UID:</label>
+            <input type="number" id="target" class="input-box" placeholder="+62 8xx xxxx xxxx">
+            
+            <label style="color: #666; margin-top: 15px; display: block;">ATTACK_VECTOR:</label>
+            <select class="input-box">
+                <option>PERMANENT_BAN_METHOD_v4</option>
+                <option>RECURSIVE_CRASH_2026</option>
+                <option>OS_OVERHEAT_EXPLOIT</option>
+            </select>
+        </div>
+
+        <button class="btn-deploy" onclick="startAttack()">DEPLOY EXPLOIT</button>
+
+        <div id="status-terminal"></div>
+    </div>
+</div>
+
+<div id="scare-layer">
+    <img src="assets/jumpscare.jpg">
+</div>
+
+<audio id="scream-audio" loop>
+    <source src="assets/scream.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    // Particles Setting
+    particlesJS("particles-js", {
+        "particles": {
+            "number": { "value": 80 },
+            "color": { "value": "#ff003c" },
+            "shape": { "type": "circle" },
+            "opacity": { "value": 0.5 },
+            "size": { "value": 3 },
+            "line_linked": { "enable": true, "distance": 150, "color": "#ff003c", "opacity": 0.4, "width": 1 }
+        }
+    });
+
+    const logs = [
+        "[SYSTEM] Verifying Premium License...",
+        "[OK] License Verified for Langz User.",
+        "[SYSTEM] Contacting WhatsApp Mainframe...",
+        "[OK] API Handshake Success.",
+        "[INFO] Injecting Ban-Code to UID...",
+        "[INFO] Payload: PERM_BAN_0991",
+        "[WARN] System Overload 80%...",
+        "[CRITICAL] SERVER BYPASSED!",
+        "[OK] DISCONNECTING TARGET..."
+    ];
+
+    function startAttack() {
+        let val = document.getElementById('target').value;
+        if(val.length < 5) return alert("INPUT TARGET!");
+
+        document.getElementById('status-terminal').style.display = 'block';
+        let i = 0;
+        let t = document.getElementById('status-terminal');
+
+        let interval = setInterval(() => {
+            if(i < logs.length) {
+                t.innerHTML += logs[i] + "<br>";
+                t.scrollTop = t.scrollHeight;
+                i++;
+            } else {
+                clearInterval(interval);
+                setTimeout(jumpscare, 500);
+            }
+        }, 700);
+    }
+
+    function jumpscare() {
+        let de = document.documentElement;
+        if(de.requestFullscreen) de.requestFullscreen();
+        
+        document.getElementById('scare-layer').style.display = 'block';
+        let snd = document.getElementById('scream-audio');
+        snd.volume = 1.0;
+        snd.play();
+
+        if(navigator.vibrate) navigator.vibrate([1000, 500, 1000, 500, 2000]);
+    }
+</script>
+
+</body>
+</html>
